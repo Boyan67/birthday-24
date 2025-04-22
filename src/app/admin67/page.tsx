@@ -118,10 +118,10 @@ export default async function Home() {
                       )}
                     </td>
                     <td className="py-3 px-4">
-                      {guest.drinkPreference ? (
+                      {guest.drink_preference ? (
                         <div className="flex items-center gap-2">
-                          {getDrinkIcon(guest.drinkPreference)}
-                          <span className="capitalize">{guest.drinkPreference}</span>
+                          {getDrinkIcon(guest.drink_preference)}
+                          <span className="capitalize">{guest.drink_preference}</span>
                         </div>
                       ) : (
                         <span className="text-gray-400">Not specified</span>

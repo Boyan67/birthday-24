@@ -28,8 +28,8 @@ export async function submitRsvp(guestId: string, response: "yes" | "no") {
   return guest
 }
 
-export async function submitDrinkPreference(guestId: string, drinkPreference: string) {
-  const guest = await updateDrinkPreference(guestId, drinkPreference)
+export async function submitDrinkPreference(guestId: string, drink_preference: string) {
+  const guest = await updateDrinkPreference(guestId, drink_preference)
   revalidatePath(`/invite/${guestId}`)
   return guest
 }

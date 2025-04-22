@@ -59,11 +59,11 @@ export async function updateRsvp(guestId: string, rsvp: "yes" | "no"): Promise<G
 }
 
 // Update a guest's drink preference
-export async function updateDrinkPreference(guestId: string, drinkPreference: string): Promise<Guest | null> {
+export async function updateDrinkPreference(guestId: string, drink_preference: string): Promise<Guest | null> {
   try {
-    console.log(`Updating drink preference for guest ${guestId} to ${drinkPreference}`)
+    console.log(`Updating drink preference for guest ${guestId} to ${drink_preference}`)
     const result = await directQuery("UPDATE guests SET drink_preference = $1 WHERE id = $2 RETURNING *", [
-      drinkPreference,
+      drink_preference,
       guestId,
     ])
 
