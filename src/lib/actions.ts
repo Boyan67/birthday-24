@@ -2,7 +2,7 @@
 
 import { updateRsvp, updateDrinkPreference, addSongSuggestion, getSongSuggestionsByGuest } from "./data"
 import type { SongSuggestion } from "./types"
-import { revalidatePath } from "next/cache"
+import {revalidatePath, revalidateTag} from "next/cache"
 import { initializeDatabase, checkDatabaseConnection } from "./db"
 
 // Initialize the database when the server starts
@@ -59,4 +59,12 @@ export async function submitSongSuggestion(formData: FormData) {
 
 export async function fetchGuestSongs(guestId: string) {
   return await getSongSuggestionsByGuest(guestId)
+}
+
+// Force revalidate all data (can be called from client)
+export async function forceRefreshData() {
+  revalidatePath("/", "layout")
+  revalidateTag("guests")
+  revalidateTag("songs")
+  return { success: true }
 }

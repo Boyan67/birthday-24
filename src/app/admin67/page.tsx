@@ -4,6 +4,7 @@ import { getData } from "@/lib/data"
 import { Wine, Beer, Coffee, Martini, CoffeeIcon as Cocktail, Music, Database } from "lucide-react"
 import { setupDatabase } from "@/lib/actions"
 import { checkDatabaseConnection } from "@/lib/db"
+import {RefreshButton} from "@/components/refresh-button";
 
 export default async function Home() {
   // Initialize the database
@@ -31,7 +32,7 @@ export default async function Home() {
       case "non-alcoholic":
         return <Coffee className="h-4 w-4 text-brown-500" />
       default:
-        return null
+        return <p>{preference}</p>
     }
   }
 
@@ -58,9 +59,7 @@ export default async function Home() {
           >
             <Database className="h-4 w-4 mr-2" />
             {connectionStatus.connected ? "Database connected" : "Database connection issue"}
-            <Link href="/setup" className="ml-2 underline">
-              Check Setup
-            </Link>
+            <RefreshButton />
           </div>
         </div>
       </div>
