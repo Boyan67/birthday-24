@@ -6,7 +6,7 @@ export type Guest = {
 }
 
 export type SongSuggestion = {
-  guestId: string
+  guest_id: string
   title: string
   artist: string
   message: string

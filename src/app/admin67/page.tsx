@@ -178,10 +178,9 @@ export default async function Home() {
               </thead>
               <tbody>
                 {songSuggestions.map((song, index) => {
-                  const guest = guests.find((g) => g.id === song.guestId)
                   return (
                     <tr key={index} className="border-b hover:bg-gray-50">
-                      <td className="py-3 px-4">{guest?.name || "Unknown"}</td>
+                      <td className="py-3 px-4">{song?.guest_id || "Unknown"}</td>
                       <td className="py-3 px-4 font-medium">{song.title}</td>
                       <td className="py-3 px-4">{song.artist || "—"}</td>
                       <td className="py-3 px-4">
