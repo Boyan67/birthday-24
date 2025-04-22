@@ -16,11 +16,11 @@ interface DrinkPreferenceFormProps {
 }
 
 const drinkOptions = [
-  { value: "wine", label: "Wine", icon: Wine },
-  { value: "beer", label: "Beer", icon: Beer },
-  { value: "cocktail", label: "Cocktail", icon: Cocktail },
-  { value: "martini", label: "Martini", icon: Martini },
-  { value: "non-alcoholic", label: "Non-Alcoholic", icon: Coffee },
+  { value: "wine", label: "Вино", icon: Wine },
+  { value: "beer", label: "Бира", icon: Beer },
+  { value: "cocktail", label: "Коктейл", icon: Cocktail },
+  { value: "martini", label: "Мартини", icon: Martini },
+  { value: "non-alcoholic", label: "Безалкохолно", icon: Coffee },
 ]
 
 export function DrinkPreferenceForm({ guestId, guestName }: DrinkPreferenceFormProps) {
@@ -63,7 +63,7 @@ export function DrinkPreferenceForm({ guestId, guestName }: DrinkPreferenceFormP
             transition={{ delay: 0.2 }}
             className="text-lg font-medium text-blue-700 text-center"
           >
-            Thanks! We&apos;ll make sure to have your preferred drink ready.
+            Благодарим! Ще се погрижим да имаме предпочитаната от вас напитка.
           </motion.p>
         </motion.div>
       ) : (
@@ -77,7 +77,7 @@ export function DrinkPreferenceForm({ guestId, guestName }: DrinkPreferenceFormP
           className="mt-6 p-4 border border-blue-100 rounded-lg bg-blue-50"
         >
           <h3 className="text-lg font-medium text-blue-800 mb-4 text-center">
-            {guestName}, what would you like to drink at the party?
+            {guestName}, какво бихте искали да пиете на партито?
           </h3>
 
           <RadioGroup value={selectedDrink || ""} onValueChange={setSelectedDrink} className="gap-3">
@@ -110,7 +110,7 @@ export function DrinkPreferenceForm({ guestId, guestName }: DrinkPreferenceFormP
               className="w-full bg-blue-600 hover:bg-blue-700 text-white"
               disabled={isSubmitting || !selectedDrink}
             >
-              {isSubmitting ? "Saving..." : "Save Preference"}
+              {isSubmitting ? "Запазване..." : "Запази предпочитание"}
             </Button>
           </motion.div>
         </motion.form>

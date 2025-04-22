@@ -22,18 +22,16 @@ export function SongForm({ guestId }: SongFormProps) {
   const [suggestedSongs, setSuggestedSongs] = useState<string[]>([])
   const formRef = useRef<HTMLFormElement>(null)
 
-  // Fetch existing song suggestions on component mount
   useEffect(() => {
     const fetchSongs = async () => {
       try {
         const songs = await fetchGuestSongs(guestId)
-        // Ensure songs is an array before mapping
         if (Array.isArray(songs)) {
           setSuggestedSongs(songs.map((song) => song.title))
           setSongCount(songs.length)
         }
       } catch (error) {
-        console.error("Error fetching songs:", error)
+        console.error("Грешка при зареждане на песни:", error)
       }
     }
 
@@ -47,18 +45,14 @@ export function SongForm({ guestId }: SongFormProps) {
     const formData = new FormData(e.currentTarget)
     formData.append("guestId", guestId)
 
-    // Get the song title before potentially resetting the form
     const newTitle = formData.get("title") as string
-
     const result = await submitSongSuggestion(formData)
 
     if (result.success) {
-      // Reset the form before changing state
       if (formRef.current) {
         formRef.current.reset()
       }
 
-      // Add the new song title to the list
       setSuggestedSongs((prev) => [...prev, newTitle])
       setSongCount((prev) => prev + 1)
       setIsSubmitted(true)
@@ -92,7 +86,7 @@ export function SongForm({ guestId }: SongFormProps) {
           transition={{ duration: 0.5 }}
           className="mb-6 p-4 bg-purple-50 rounded-lg"
         >
-          <h3 className="font-medium text-purple-700 mb-2">Your suggested songs:</h3>
+          <h3 className="font-medium text-purple-700 mb-2">Предложени от теб песни:</h3>
           <ul className="space-y-1 text-purple-600">
             {suggestedSongs.map((song, index) => (
               <li key={index} className="flex items-center gap-2">
@@ -127,7 +121,7 @@ export function SongForm({ guestId }: SongFormProps) {
               transition={{ delay: 0.3 }}
               className="text-xl font-medium text-purple-700"
             >
-              Thanks for your suggestion!
+              Благодарим за предложението!
             </motion.h3>
             <motion.p
               initial={{ opacity: 0, y: 10 }}
@@ -135,7 +129,7 @@ export function SongForm({ guestId }: SongFormProps) {
               transition={{ delay: 0.4 }}
               className="text-purple-600"
             >
-              We&apos;ll add it to the playlist for the party.
+              Ще го добавим към плейлиста за партито.
             </motion.p>
 
             <motion.div
@@ -150,7 +144,7 @@ export function SongForm({ guestId }: SongFormProps) {
                 className="text-purple-600 border-purple-200 hover:bg-purple-50"
               >
                 <Plus className="mr-2 h-4 w-4" />
-                Suggest Another Song
+                Предложи още една песен
               </Button>
             </motion.div>
           </motion.div>
@@ -173,33 +167,33 @@ export function SongForm({ guestId }: SongFormProps) {
           >
             <motion.div className="space-y-2" custom={0} variants={formControls}>
               <Label htmlFor="title">
-                Song Title <span className="text-red-500">*</span>
+                Заглавие на песента <span className="text-red-500">*</span>
               </Label>
               <Input
                 id="title"
                 name="title"
-                placeholder="Enter song title"
+                placeholder="Въведи заглавие"
                 required
                 className="border-gray-300 focus:border-purple-500 focus:ring-purple-500"
               />
             </motion.div>
 
             <motion.div className="space-y-2" custom={1} variants={formControls}>
-              <Label htmlFor="artist">Artist</Label>
+              <Label htmlFor="artist">Изпълнител</Label>
               <Input
                 id="artist"
                 name="artist"
-                placeholder="Enter artist name"
+                placeholder="Име на изпълнителя"
                 className="border-gray-300 focus:border-purple-500 focus:ring-purple-500"
               />
             </motion.div>
 
             <motion.div className="space-y-2" custom={2} variants={formControls}>
-              <Label htmlFor="message">Message or Shout-out</Label>
+              <Label htmlFor="message">Съобщение или поздрав</Label>
               <Textarea
                 id="message"
                 name="message"
-                placeholder="Add a little message or shout-out (optional)"
+                placeholder="Добави поздрав или съобщение (по желание)"
                 rows={3}
                 className="border-gray-300 focus:border-purple-500 focus:ring-purple-500"
               />
@@ -212,7 +206,11 @@ export function SongForm({ guestId }: SongFormProps) {
                   className="w-full bg-purple-600 hover:bg-purple-700 text-white"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? "Submitting..." : songCount > 0 ? "Suggest Another Song" : "Submit Song Suggestion"}
+                  {isSubmitting
+                    ? "Изпращане..."
+                    : songCount > 0
+                      ? "Предложи още една песен"
+                      : "Изпрати предложение"}
                 </Button>
               </motion.div>
             </motion.div>

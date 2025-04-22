@@ -15,8 +15,8 @@ export default async function InvitePage({ params }: { params: Promise<{ guestId
   }
 
   const eventDetails = {
-    name: "Boyan",
-    date: "30th April · 20:00",
+    name: "Боян",
+    date: "30 Април · 19:30",
     location: "Блок 25, Малинова Долина, София",
     mapUrl: "https://maps.google.com/?q=Блок+25+Малинова+Долина+София",
   }
@@ -28,8 +28,8 @@ export default async function InvitePage({ params }: { params: Promise<{ guestId
           <div className="mb-2">
             <AnimatedEmoji emoji="🎉" animation="bounce" />
           </div>
-          <h1 className="text-2xl font-bold mb-1">You&apos;re Invited to {eventDetails.name}&apos;s Birthday!</h1>
-          <p className="opacity-90">A special invitation for {guest.name}</p>
+          <h1 className="text-2xl font-bold mb-1">Поканени сте на рождения ден на {eventDetails.name}!</h1>
+          <p className="opacity-90">Специална покана за {guest.name}</p>
         </div>
 
         <div className="p-6 bg-white">
@@ -46,7 +46,7 @@ export default async function InvitePage({ params }: { params: Promise<{ guestId
 
             <a href={eventDetails.mapUrl} target="_blank" rel="noopener noreferrer" className="block w-full">
               <Button variant="outline" className="w-full border-gray-300 text-gray-700 hover:bg-gray-50">
-                View Map
+                Виж на картата
               </Button>
             </a>
           </div>
@@ -57,7 +57,7 @@ export default async function InvitePage({ params }: { params: Promise<{ guestId
             <Link href={`/suggest-a-song/${guest.id}`} className="inline-flex items-center">
               <Button variant="ghost" className="text-purple-600 hover:bg-purple-50">
                 <Music className="mr-2 h-5 w-5" />
-                Suggest a Song
+                Предложи песен
               </Button>
             </Link>
           </div>

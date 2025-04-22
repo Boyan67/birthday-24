@@ -1,6 +1,6 @@
 "use client"
 
-import {useEffect, useRef, useState} from "react"
+import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { submitRsvp } from "@/lib/actions"
 import type { Guest } from "@/lib/types"
@@ -28,23 +28,19 @@ export function RsvpButtons({ guest }: RsvpButtonsProps) {
 
     if (answer === "yes") {
       setShowConfetti(true)
-      // Show drink form after a short delay
       setTimeout(() => {
         setShowDrinkForm(true)
       }, 1500)
 
-      // scroll down 200px
       window.scrollTo({
         top: window.scrollY + 2000,
         behavior: "smooth",
       })
 
-      // Hide confetti after 5 seconds
       setTimeout(() => setShowConfetti(false), 5000)
     }
   }
 
-  // Scroll to drink form when it appears
   useEffect(() => {
     if (showDrinkForm && drinkFormRef.current) {
       setTimeout(() => {
@@ -52,7 +48,7 @@ export function RsvpButtons({ guest }: RsvpButtonsProps) {
           behavior: "smooth",
           block: "center",
         })
-      }, 100) // Small delay to ensure the form is rendered
+      }, 100)
     }
   }, [showDrinkForm])
 
@@ -90,13 +86,13 @@ export function RsvpButtons({ guest }: RsvpButtonsProps) {
                 className={`text-lg font-medium ${response === "yes" ? "text-green-700" : "text-gray-700"}`}
               >
                 {response === "yes"
-                  ? `Thanks, ${guest.name}! Can't wait to party with you!`
-                  : `Sad to miss you, ${guest.name}. Maybe next time!`}
+                  ? `Благодарим ти, ${guest.name}! Очаквам с нетърпение да се забавляваме заедно!`
+                  : `Ще ни липсваш, ${guest.name}. До следващия път!`}
               </motion.p>
             </motion.div>
           ) : (
             <motion.div key="buttons" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              <p className="text-xl font-medium text-center mb-4">Will you be joining us?</p>
+              <p className="text-xl font-medium text-center mb-4">Ще се присъединиш ли към нас?</p>
               <div className="flex justify-center gap-4">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Button
@@ -106,7 +102,7 @@ export function RsvpButtons({ guest }: RsvpButtonsProps) {
                     disabled={isSubmitting}
                   >
                     <CheckCircle className="mr-2 h-5 w-5" />
-                    Yes
+                    Да
                   </Button>
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -118,7 +114,7 @@ export function RsvpButtons({ guest }: RsvpButtonsProps) {
                     disabled={isSubmitting}
                   >
                     <XCircle className="mr-2 h-5 w-5" />
-                    No
+                    Не
                   </Button>
                 </motion.div>
               </div>
@@ -126,14 +122,12 @@ export function RsvpButtons({ guest }: RsvpButtonsProps) {
           )}
         </AnimatePresence>
 
-        {/* Show drink preference form if the guest RSVP'd yes */}
         {response === "yes" && showDrinkForm && !guest.drinkPreference && (
           <div ref={drinkFormRef}>
-          <DrinkPreferenceForm guestId={guest.id} guestName={guest.name} />
+            <DrinkPreferenceForm guestId={guest.id} guestName={guest.name} />
           </div>
         )}
 
-        {/* Show saved drink preference if available */}
         {response === "yes" && guest.drinkPreference && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -141,7 +135,7 @@ export function RsvpButtons({ guest }: RsvpButtonsProps) {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mt-4 p-3 bg-blue-50 rounded-lg text-blue-700 text-sm"
           >
-            Your drink preference ({guest.drinkPreference}) has been saved!
+            Твоето предпочитание за питие ({guest.drinkPreference}) е запазено!
           </motion.div>
         )}
       </div>

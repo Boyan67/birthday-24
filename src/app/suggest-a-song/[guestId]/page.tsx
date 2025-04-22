@@ -21,8 +21,8 @@ export default async function SuggestSongPage({ params }: { params: Promise<{ gu
           <div className="mb-2">
             <AnimatedEmoji emoji="🎶" animation="pulse" />
           </div>
-          <h1 className="text-2xl font-bold mb-1">{guest.name}, got a song in mind?</h1>
-          <p className="opacity-90">Help us create the perfect playlist for Boyan&apos;s birthday!</p>
+          <h1 className="text-2xl font-bold mb-1">{guest.name}, имаш ли идея за песен?</h1>
+          <p className="opacity-90">Помогни ни да създадем перфектния плейлист за рождения ден на Боян!</p>
         </div>
 
         <div className="p-6 bg-white">
@@ -32,7 +32,7 @@ export default async function SuggestSongPage({ params }: { params: Promise<{ gu
             <Link href={`/invite/${guest.id}`}>
               <Button variant="ghost" size="sm" className="text-gray-600 hover:bg-gray-50">
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to invitation
+                Назад към поканата
               </Button>
             </Link>
           </div>
