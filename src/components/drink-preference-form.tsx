@@ -8,7 +8,18 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { submitDrinkPreference } from "@/lib/actions"
 import { motion, AnimatePresence } from "framer-motion"
-import { Wine, Beer, Coffee, Martini, CoffeeIcon as Cocktail, Check } from "lucide-react"
+import {
+  Wine,
+  Beer,
+  Martini,
+  Sparkles as Cocktail,
+  Check,
+  BeerOff,
+  Wheat,
+  Citrus,
+  Skull,
+  AmphoraIcon
+} from "lucide-react"
 
 interface DrinkPreferenceFormProps {
   guestId: string
@@ -19,8 +30,12 @@ const drinkOptions = [
   { value: "wine", label: "Вино", icon: Wine },
   { value: "beer", label: "Бира", icon: Beer },
   { value: "cocktail", label: "Коктейл", icon: Cocktail },
-  { value: "martini", label: "Мартини", icon: Martini },
-  { value: "non-alcoholic", label: "Безалкохолно", icon: Coffee },
+  { value: "vodka", label: "Водка", icon: Martini },
+  { value: "whiskey", label: "Уиски", icon: Wheat  },
+  { value: "tequila", label: "Текила", icon: Citrus  },
+  { value: "rakia", label: "Ракиа", icon: AmphoraIcon },
+  { value: "gin", label: "Джин", icon: Skull },
+  { value: "non-alcoholic", label: "Безалкохолно?", icon: BeerOff },
 ]
 
 export function DrinkPreferenceForm({ guestId, guestName }: DrinkPreferenceFormProps) {
@@ -63,7 +78,7 @@ export function DrinkPreferenceForm({ guestId, guestName }: DrinkPreferenceFormP
             transition={{ delay: 0.2 }}
             className="text-lg font-medium text-blue-700 text-center"
           >
-            Благодарим! Ще се погрижим да имаме предпочитаната от вас напитка.
+            Благодаря! Ще се погрижим да имаме предпочитаната от вас напитка.
           </motion.p>
         </motion.div>
       ) : (

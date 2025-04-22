@@ -2,7 +2,7 @@ export type Guest = {
   id: string
   name: string
   rsvp: "yes" | "no" | null
-  drinkPreference?: string
+  drink_preference?: string
 }
 
 export type SongSuggestion = {

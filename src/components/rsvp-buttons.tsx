@@ -52,6 +52,7 @@ export function RsvpButtons({ guest }: RsvpButtonsProps) {
     }
   }, [showDrinkForm])
 
+
   return (
     <>
       {showConfetti && <Confetti />}
@@ -86,7 +87,7 @@ export function RsvpButtons({ guest }: RsvpButtonsProps) {
                 className={`text-lg font-medium ${response === "yes" ? "text-green-700" : "text-gray-700"}`}
               >
                 {response === "yes"
-                  ? `Благодарим ти, ${guest.name}! Очаквам с нетърпение да се забавляваме заедно!`
+                  ? `Благодаря ти, ${guest.name}! Очаквам с нетърпение да се забавляваме заедно!`
                   : `Ще ни липсваш, ${guest.name}. До следващия път!`}
               </motion.p>
             </motion.div>
@@ -122,20 +123,41 @@ export function RsvpButtons({ guest }: RsvpButtonsProps) {
           )}
         </AnimatePresence>
 
-        {response === "yes" && showDrinkForm && !guest.drinkPreference && (
+        {response === "yes" && showDrinkForm &&  (
           <div ref={drinkFormRef}>
             <DrinkPreferenceForm guestId={guest.id} guestName={guest.name} />
           </div>
         )}
 
-        {response === "yes" && guest.drinkPreference && (
+        {response === "yes" && guest.drink_preference && guest.drink_preference !== "non-alcoholic" && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mt-4 p-3 bg-blue-50 rounded-lg text-blue-700 text-sm"
           >
-            Твоето предпочитание за питие ({guest.drinkPreference}) е запазено!
+            Твоето предпочитание за питие ({guest.drink_preference}) е запазено!
+          </motion.div>
+        )}
+
+        {guest.drink_preference === "non-alcoholic" && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="mt-4 p-4 bg-red-100 rounded-lg text-red-700 text-sm"
+          >
+            <div className={"flex flex-col items-center"}>
+            Ама ти верно ли няма да пиеш на моят рожден ден? 😱
+            <button
+              onClick={() => {
+                setShowDrinkForm(true)
+              }}
+              className="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg transition duration-200"
+            >
+              Пробай пак
+            </button>
+            </div>
           </motion.div>
         )}
       </div>

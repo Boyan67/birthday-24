@@ -121,7 +121,7 @@ export function SongForm({ guestId }: SongFormProps) {
               transition={{ delay: 0.3 }}
               className="text-xl font-medium text-purple-700"
             >
-              Благодарим за предложението!
+              Благодаря за предложението!
             </motion.h3>
             <motion.p
               initial={{ opacity: 0, y: 10 }}

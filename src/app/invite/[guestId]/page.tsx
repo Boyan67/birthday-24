@@ -22,14 +22,14 @@ export default async function InvitePage({ params }: { params: Promise<{ guestId
   }
 
   return (
-    <div className="container max-w-md mx-auto">
+    <div className="container max-w-md mx-auto md:mt-20">
       <AnimatedCard>
         <div className="bg-gradient-to-r from-pink-500 to-purple-500 p-6 text-white text-center">
           <div className="mb-2">
             <AnimatedEmoji emoji="🎉" animation="bounce" />
           </div>
-          <h1 className="text-2xl font-bold mb-1">Поканени сте на рождения ден на {eventDetails.name}!</h1>
-          <p className="opacity-90">Специална покана за {guest.name}</p>
+          <h1 className="text-2xl font-bold mb-2">Поканени сте на рождения ден на {eventDetails.name}!</h1>
+          <p className="font-light">Специална покана за {guest.name}</p>
         </div>
 
         <div className="p-6 bg-white">
