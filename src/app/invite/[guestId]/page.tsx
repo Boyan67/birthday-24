@@ -18,7 +18,7 @@ export default async function InvitePage({ params }: { params: Promise<{ guestId
     name: "Боян",
     date: "30 Април · 19:30",
     location: "Блок 25, Малинова Долина, София",
-    mapUrl: "https://maps.google.com/?q=Блок+25+Малинова+Долина+София",
+    mapUrl: "https://maps.google.com/?q=Блок+25,+ж.к.+Малинова+Долина,+София",
   }
 
   return (
