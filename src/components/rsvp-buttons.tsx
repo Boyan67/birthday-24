@@ -56,7 +56,7 @@ export function RsvpButtons({ guest }: RsvpButtonsProps) {
   return (
     <>
       {showConfetti && <Confetti />}
-      <div className="mt-6 text-center">
+      <div className="mt-10 mb-14 text-center">
         <AnimatePresence mode="wait">
           {response ? (
             <motion.div
@@ -84,7 +84,7 @@ export function RsvpButtons({ guest }: RsvpButtonsProps) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className={`text-lg font-medium ${response === "yes" ? "text-green-700" : "text-gray-700"}`}
+                className={`font-medium ${response === "yes" ? "text-green-900" : "text-gray-700"}`}
               >
                 {response === "yes"
                   ? `Благодаря ти, ${guest.name}! Очаквам с нетърпение да се забавляваме заедно!`
@@ -93,31 +93,32 @@ export function RsvpButtons({ guest }: RsvpButtonsProps) {
             </motion.div>
           ) : (
             <motion.div key="buttons" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              <p className="text-xl font-medium text-center mb-4">Ще се присъединиш ли към нас?</p>
+              <p className="text-xl font-medium text-gray-950 text-center mb-5">Ще се присъединиш ли?</p>
               <div className="flex justify-center gap-4">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button
-                    size="lg"
-                    className="bg-green-600 hover:bg-green-700 text-white"
-                    onClick={() => handleRsvp("yes")}
-                    disabled={isSubmitting}
-                  >
-                    <CheckCircle className="mr-2 h-5 w-5" />
-                    Да
-                  </Button>
-                </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-red-300 text-red-600 hover:bg-red-50"
+                    className="border-green-500 bg-green-50 flex flex-1 p-6"
+                    onClick={() => handleRsvp("yes")}
+                    disabled={isSubmitting}
+                  >
+                    <CheckCircle className="mr-1 -ml-1 h-5 w-5" />
+                    Да
+                  </Button>
+
+
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-red-500 bg-red-50 hover:bg-red-50 flex flex-1 p-6"
                     onClick={() => handleRsvp("no")}
                     disabled={isSubmitting}
                   >
-                    <XCircle className="mr-2 h-5 w-5" />
+                    <XCircle className="mr-1 -ml-1 h-5 w-5 " />
                     Не
                   </Button>
-                </motion.div>
+
               </div>
             </motion.div>
           )}
@@ -147,13 +148,13 @@ export function RsvpButtons({ guest }: RsvpButtonsProps) {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mt-4 p-4 bg-red-100 rounded-lg text-red-700 text-sm"
           >
-            <div className={"flex flex-col items-center"}>
-            Ама ти верно ли няма да пиеш на моят рожден ден? 😱
+            <div className={"flex flex-col items-center text-base"}>
+            <p>Ама ти верно ли няма да пиеш на моя рожден ден? 😱</p>
             <button
               onClick={() => {
                 setShowDrinkForm(true)
               }}
-              className="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg transition duration-200"
+              className="mt-4 px-4 py-3 bg-red-600 text-white rounded-lg transition duration-200 font-medium"
             >
               Пробай пак
             </button>

@@ -33,7 +33,7 @@ const drinkOptions = [
   { value: "vodka", label: "Водка", icon: Martini },
   { value: "whiskey", label: "Уиски", icon: Wheat  },
   { value: "tequila", label: "Текила", icon: Citrus  },
-  { value: "rakia", label: "Ракиа", icon: AmphoraIcon },
+  { value: "rakia", label: "Ракия", icon: AmphoraIcon },
   { value: "gin", label: "Джин", icon: Skull },
   { value: "non-alcoholic", label: "Безалкохолно?", icon: BeerOff },
 ]
@@ -76,7 +76,7 @@ export function DrinkPreferenceForm({ guestId, guestName }: DrinkPreferenceFormP
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-lg font-medium text-blue-700 text-center"
+            className="text-base font-medium text-blue-700 text-center"
           >
             Благодаря! Ще се погрижим да имаме предпочитаната от вас напитка.
           </motion.p>

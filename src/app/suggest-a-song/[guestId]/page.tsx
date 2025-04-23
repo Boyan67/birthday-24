@@ -15,7 +15,7 @@ export default async function SuggestSongPage({ params }: { params: Promise<{ gu
   }
 
   return (
-    <div className="container max-w-md mx-auto py-10 px-4">
+    <div className="container max-w-md mx-auto ">
       <AnimatedCard>
         <div className="bg-gradient-to-r from-purple-500 to-indigo-500 p-6 text-white text-center">
           <div className="mb-2">
@@ -29,7 +29,7 @@ export default async function SuggestSongPage({ params }: { params: Promise<{ gu
           <SongForm guestId={guest.id} />
 
           <div className="mt-8 text-center">
-            <Link href={`/invite/${guest.id}`}>
+            <Link href={`/invite/${guest.id}`} className={"p-3"}>
               <Button variant="ghost" size="sm" className="text-gray-600 hover:bg-gray-50">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Назад към поканата

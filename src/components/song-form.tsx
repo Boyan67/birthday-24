@@ -18,7 +18,6 @@ interface SongFormProps {
 export function SongForm({ guestId }: SongFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const [songCount, setSongCount] = useState(0)
   const [suggestedSongs, setSuggestedSongs] = useState<string[]>([])
   const formRef = useRef<HTMLFormElement>(null)
 
@@ -28,7 +27,6 @@ export function SongForm({ guestId }: SongFormProps) {
         const songs = await fetchGuestSongs(guestId)
         if (Array.isArray(songs)) {
           setSuggestedSongs(songs.map((song) => song.title))
-          setSongCount(songs.length)
         }
       } catch (error) {
         console.error("Грешка при зареждане на песни:", error)
@@ -54,7 +52,6 @@ export function SongForm({ guestId }: SongFormProps) {
       }
 
       setSuggestedSongs((prev) => [...prev, newTitle])
-      setSongCount((prev) => prev + 1)
       setIsSubmitted(true)
     }
 
@@ -87,9 +84,9 @@ export function SongForm({ guestId }: SongFormProps) {
           className="mb-6 p-4 bg-purple-50 rounded-lg"
         >
           <h3 className="font-medium text-purple-700 mb-2">Предложени от теб песни:</h3>
-          <ul className="space-y-1 text-purple-600">
+          <ul className="space-y-1 text-purple-700">
             {suggestedSongs.map((song, index) => (
-              <li key={index} className="flex items-center gap-2">
+              <li key={index} className="flex items-center gap-2 text-purple-950">
                 <Music className="h-4 w-4 flex-shrink-0" />
                 <span>{song}</span>
               </li>
@@ -174,7 +171,7 @@ export function SongForm({ guestId }: SongFormProps) {
                 name="title"
                 placeholder="Въведи заглавие"
                 required
-                className="border-gray-300 focus:border-purple-500 focus:ring-purple-500"
+                className="border-gray-300 focus:border-purple-500 focus:ring-purple-500 py-5"
               />
             </motion.div>
 
@@ -184,7 +181,7 @@ export function SongForm({ guestId }: SongFormProps) {
                 id="artist"
                 name="artist"
                 placeholder="Име на изпълнителя"
-                className="border-gray-300 focus:border-purple-500 focus:ring-purple-500"
+                className="border-gray-300 focus:border-purple-500 focus:ring-purple-500 py-5"
               />
             </motion.div>
 
@@ -195,7 +192,7 @@ export function SongForm({ guestId }: SongFormProps) {
                 name="message"
                 placeholder="Добави поздрав или съобщение (по желание)"
                 rows={3}
-                className="border-gray-300 focus:border-purple-500 focus:ring-purple-500"
+                className="border-gray-300 focus:border-purple-500 focus:ring-purple-500 py-3"
               />
             </motion.div>
 
@@ -203,14 +200,12 @@ export function SongForm({ guestId }: SongFormProps) {
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <Button
                   type="submit"
-                  className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+                  className="w-full bg-purple-600 hover:bg-purple-700 text-white p-6"
                   disabled={isSubmitting}
                 >
                   {isSubmitting
                     ? "Изпращане..."
-                    : songCount > 0
-                      ? "Предложи още една песен"
-                      : "Изпрати предложение"}
+                    : "Изпрати предложение"}
                 </Button>
               </motion.div>
             </motion.div>
