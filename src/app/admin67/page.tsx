@@ -1,7 +1,18 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { getData } from "@/lib/data"
-import { Wine, Beer, Coffee, Martini, CoffeeIcon as Cocktail, Music, Database } from "lucide-react"
+import {
+  Wine,
+  Beer,
+  Coffee,
+  Martini,
+  CoffeeIcon as Cocktail,
+  Music,
+  Database,
+  Wheat,
+  Citrus,
+  AmphoraIcon, Skull, BeerOff
+} from "lucide-react"
 import { setupDatabase } from "@/lib/actions"
 import { checkDatabaseConnection } from "@/lib/db"
 import {RefreshButton} from "@/components/refresh-button";
@@ -22,17 +33,25 @@ export default async function Home() {
   const getDrinkIcon = (preference: string) => {
     switch (preference) {
       case "wine":
-        return <Wine className="h-4 w-4 text-red-500" />
+        return <Wine className="h-4 w-4 text-purple-500" />
       case "beer":
         return <Beer className="h-4 w-4 text-amber-500" />
       case "cocktail":
-        return <Cocktail className="h-4 w-4 text-pink-500" />
-      case "martini":
+        return <Cocktail className="h-4 w-4 text-green-500" />
+      case "vodka":
         return <Martini className="h-4 w-4 text-blue-500" />
+      case "whiskey":
+        return <Wheat className="h-4 w-4 text-yellow-500" />
+      case "tequila":
+        return <Citrus className="h-4 w-4 text-orange-500" />
+      case "rakia":
+        return <AmphoraIcon className="h-4 w-4 text-red-500" />
+      case "gin":
+        return <Skull className="h-4 w-4 text-gray-500" />
       case "non-alcoholic":
-        return <Coffee className="h-4 w-4 text-brown-500" />
+        return <BeerOff className="h-4 w-4 text-gray-300" />
       default:
-        return <p>{preference}</p>
+        return <Coffee className={"h-4 w-4 text-gray-300"}/>
     }
   }
 
