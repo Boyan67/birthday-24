@@ -49,7 +49,16 @@ export function DrinkPreferenceForm({ guestId, guestName }: DrinkPreferenceFormP
     if (!selectedDrink) return
 
     setIsSubmitting(true)
-    await submitDrinkPreference(guestId, selectedDrink)
+    const result = await submitDrinkPreference(guestId, selectedDrink)
+
+    // Force a refresh to update the UI with the new preference
+    if (result?.drink_preference === "non-alcoholic") {
+      // Small delay to ensure the database update completes
+      setTimeout(() => {
+        window.location.reload()
+      }, 2000)
+    }
+
     setIsSubmitted(true)
     setIsSubmitting(false)
   }

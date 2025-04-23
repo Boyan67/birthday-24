@@ -1,9 +1,8 @@
 import type { Guest, SongSuggestion } from "./types"
 import { directQuery } from "./db"
-import { unstable_cache } from "next/cache"
 
 // Get all guests with caching
-export const getData = unstable_cache(
+export const getData =
   async () => {
     try {
       console.log("Fetching all data...")
@@ -20,13 +19,10 @@ export const getData = unstable_cache(
       console.error("Error fetching data:", error)
       return { guests: [], songSuggestions: [] }
     }
-  },
-  ['all-data'],
-  { tags: ['guests', 'songs'], revalidate: 60 } // Revalidate every 10 seconds
-)
+  }
 
 // Get a guest by ID with caching
-export const getGuest = unstable_cache(
+export const getGuest =
   async (guestId: string): Promise<Guest | undefined> => {
     try {
       console.log(`Fetching guest with ID: ${guestId}`)
@@ -43,10 +39,7 @@ export const getGuest = unstable_cache(
       console.error("Error fetching guest:", error)
       return undefined
     }
-  },
-  ['guest-by-id'],
-  { tags: ['guests'], revalidate: 60 } // Revalidate every 10 seconds
-)
+  }
 
 // Update a guest's RSVP status
 export async function updateRsvp(guestId: string, rsvp: "yes" | "no"): Promise<Guest | null> {
@@ -112,7 +105,7 @@ export async function addSongSuggestion(suggestion: SongSuggestion): Promise<Son
 }
 
 // Get song suggestions by guest ID with caching
-export const getSongSuggestionsByGuest = unstable_cache(
+export const getSongSuggestionsByGuest =
   async (guestId: string): Promise<SongSuggestion[]> => {
     try {
       console.log(`Fetching song suggestions for guest ${guestId}`)
@@ -126,7 +119,4 @@ export const getSongSuggestionsByGuest = unstable_cache(
       console.error("Error fetching song suggestions:", error)
       return []
     }
-  },
-  ['songs-by-guest-id'],
-  { tags: ['songs'], revalidate: 60 } // Revalidate every 10 seconds
-)
+  }

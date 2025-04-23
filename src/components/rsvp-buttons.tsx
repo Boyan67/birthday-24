@@ -8,6 +8,7 @@ import { CheckCircle, XCircle } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Confetti } from "./confetti"
 import { DrinkPreferenceForm } from "./drink-preference-form"
+import {useRouter} from "next/navigation";
 
 interface RsvpButtonsProps {
   guest: Guest
@@ -32,10 +33,6 @@ export function RsvpButtons({ guest }: RsvpButtonsProps) {
         setShowDrinkForm(true)
       }, 1500)
 
-      window.scrollTo({
-        top: window.scrollY + 2000,
-        behavior: "smooth",
-      })
 
       setTimeout(() => setShowConfetti(false), 5000)
     }
@@ -52,11 +49,13 @@ export function RsvpButtons({ guest }: RsvpButtonsProps) {
     }
   }, [showDrinkForm])
 
+  const router = useRouter()
+
 
   return (
     <>
       {showConfetti && <Confetti />}
-      <div className="mt-10 mb-14 text-center">
+      <div className="mt-10 mb-8 text-center">
         <AnimatePresence mode="wait">
           {response ? (
             <motion.div
@@ -128,17 +127,6 @@ export function RsvpButtons({ guest }: RsvpButtonsProps) {
           <div ref={drinkFormRef}>
             <DrinkPreferenceForm guestId={guest.id} guestName={guest.name} />
           </div>
-        )}
-
-        {response === "yes" && guest.drink_preference && guest.drink_preference !== "non-alcoholic" && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-4 p-3 bg-blue-50 rounded-lg text-blue-700 text-sm"
-          >
-            Твоето предпочитание за питие ({guest.drink_preference}) е запазено!
-          </motion.div>
         )}
 
         {guest.drink_preference === "non-alcoholic" && (

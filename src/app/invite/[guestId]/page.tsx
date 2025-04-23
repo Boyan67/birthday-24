@@ -1,14 +1,14 @@
 import { notFound } from "next/navigation"
 import { getGuest } from "@/lib/data"
 import { RsvpButtons } from "@/components/rsvp-buttons"
-import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { MapPin, Calendar, Music } from "lucide-react"
 import { AnimatedCard } from "@/components/animated-card"
 import { AnimatedEmoji } from "@/components/animated-emoji"
 
 export default async function InvitePage({ params }: { params: Promise<{ guestId: string }> }) {
-  const guest = await getGuest((await params).guestId)
+  const guestId = (await params).guestId
+  const guest = await getGuest(guestId)
 
   if (!guest) {
     notFound()
@@ -51,7 +51,7 @@ export default async function InvitePage({ params }: { params: Promise<{ guestId
 
           <RsvpButtons guest={guest}/>
 
-          <div className="mt-8 text-center">
+          <div className="mt-4 text-center">
             <Link href={`/suggest-a-song/${guest.id}`} className="inline-flex items-center text-purple-600 text-base hover:bg-purple-50 flex gap-1 font-medium py-2 px-5">
 
                 <Music className="mr-2 h-4.5 w-4.5" />
